@@ -18,7 +18,7 @@ app.use("/api/contacts", require("./routes/contactRoutes"));
 /**
  * Using middleware
  */
-app.use(errorHandler)
+app.use(errorHandler);
 
 app.listen(port, ()=> {
     console.log(`Server is running on port ${port}`);
