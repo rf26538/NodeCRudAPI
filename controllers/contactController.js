@@ -19,7 +19,8 @@ const createContact = asyncHandler(async (req, res) => {
         name,
         age,
         email,
-        phone
+        phone,
+        user_id: req.user.id
     });
     res.status(201).json(contact);
 });
@@ -30,6 +31,11 @@ const updateContact = asyncHandler(async (req, res) => {
     if (!contact) {
         res.status(404);
         throw new Error("Constact not found");
+    }
+
+    if(contact.user.toString() !== req.user.id){
+        res.status(403)
+        throw new Error("User don't have permission to update other user contacts");
     }
 
     const updatedContact = await Contact.findByIdAndUpdate(
