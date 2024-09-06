@@ -64,7 +64,10 @@ const deleteContact = asyncHandler(async (req, res) => {
     }
     /** */ 
 
-    await contact.remove();
+    /** Here we are removing all from database 
+     * await contact.remove();
+    */
+    await Contact.deleteOne({_id: req.params.id});
     res.status(200).json(contact);
 });
 
