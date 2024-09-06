@@ -56,9 +56,9 @@ const userLogin = asyncHandler(async (req, res) => {
 
             }, 
             process.env.ACCESS_TOKEN_SECRATE,
-            {expiresIn: "1m"}
+            { expiresIn: "1m" }
         );
-        res.status(200).json({accessToken})
+        res.status(200).json({ accessToken })
     } else {
         res.status(401);
         throw new Error("Email or password is not valid")
@@ -67,7 +67,7 @@ const userLogin = asyncHandler(async (req, res) => {
 
 // Private 
 const getLoggedinUserDeatils = asyncHandler(async (req, res) => {
-    res.json({ message: "User information"});
+    res.json(req.user);
 });
 
 module.exports = {

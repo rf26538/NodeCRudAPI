@@ -6,7 +6,8 @@ const {
     updateContact,
     deleteContact,
     getIndivisualContact
-} = require("../controllers/contactController")
+} = require("../controllers/contactController");
+const validateToken = require("../middleware/validateTokenHandler");
 
 /**
  * For Same route we can do this also
@@ -14,6 +15,7 @@ const {
  * router.route('/:id').put(updateContact).delete(deleteContact).get(getIndivisualContact);
  * this is also the way and it will save some time also
  */
+router.use(validateToken);
 
 router.route('/').get(getContacts);
 router.route('/').post(createContact);
